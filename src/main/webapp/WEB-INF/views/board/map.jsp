@@ -16,22 +16,22 @@
 			if(pnum == 1){
 			//map id에 맵생성
 			var map = new naver.maps.Map('map', {
-			    center: new naver.maps.LatLng(37.80034557376226, 127.31775090811861),//경도,위도 
+			    center: new naver.maps.LatLng(37.78154583397379, 127.36845920014854),//경도,위도 
 			    zoom: 17
 			});
 			//마커생성
 			var marker = new naver.maps.Marker({
-			    position: new naver.maps.LatLng(37.80034557376226, 127.31775090811861),
+			    position: new naver.maps.LatLng(37.78154583397379, 127.36845920014854),
 			    map: map
 			});
 		}else {
 			var map = new naver.maps.Map('map', {
-			    center: new naver.maps.LatLng(37.484746663141095, 126.93006829643338),//경도,위도 
+			    center: new naver.maps.LatLng(37.8353319107295, 127.49950712651592),//경도,위도 
 			    zoom: 17
 			});
 			//마커생성
 			var marker = new naver.maps.Marker({
-			    position: new naver.maps.LatLng(37.484746663141095, 126.93006829643338),
+			    position: new naver.maps.LatLng(37.8353319107295, 127.49950712651592),
 			    map: map
 			});
 		}
