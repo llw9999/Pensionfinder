@@ -10,6 +10,7 @@
 <title>찾아오시는길</title>
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ckoeuzl93b"></script>
 	<script>
+	
 		$(function () { 
 			const pnum = $('#pnum').val();
 			
