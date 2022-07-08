@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.mycompany.myapp.ReserveMapper">
+  	<insert id="insert" useGeneratedKeys="true" keyProperty="rnum">
+  		insert into reserve(pnum, startdate, enddate, memail)
+		value (#{pnum}, #{startdate}, #{enddate}, #{memail})
+  	</insert>
+  	
+  	<delete id="delete">
+  		delete from reserve
+  		where rnum = #{rnum}
+  	</delete>
+  	
+  	<select id="mselectList" resultType="Reserve">
+  		select * from reserve
+		where memail = #{memail}
+		and rremoveyn = 'n'
+		order by rnum desc
+  	</select> 
+  	
+  	<select id="selectList" resultType="Reserve">
+  		select * from reserve
+  		where pnum = #{pnum}
+  		and rremoveyn = 'n'
+		order by rnum desc
+  	</select>
+  	
+  	<update id="updateRremoveyn">
+  		UPDATE reserve
+		SET rremoveyn = 'y'
+		WHERE rnum = #{rnum}
+  	</update>
+  	
+  	<select id="insertcheck" resultType="int">
+  		select count(*) cnt from reserve
+		Where (#{startdate} between startdate and enddate
+		or #{enddate} between startdate and enddate)
+		and pnum = #{pnum}
+  	</select>
+	
+  </mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.mycompany.myapp.JoinMemberMapper">
+	<insert id="insert">
+		insert into joinmember(memail, mname, mpasswd) 
+		values (#{memail}, #{mname}, #{mpasswd})
+	</insert>
+	
+	<update id="update">
+  		update joinmember
+		set
+			mname = #{mname},
+			mpasswd = #{mpasswd}
+		where memail = #{memail}
+  	</update>
+  	
+  	<delete id="delete">
+  		delete from joinpension
+		where memail = #{memail}
+  	</delete>
+  	
+  	<select id="selectOne" resultType="JoinMember">
+  		select * from joinmember
+		where memail = #{memail}
+  	</select>
+  	
+  	<select id="selectList" resultType="JoinMember">
+  		select * from joinmember
+		where ${findkey} like concat('%', '#{findvalue}', '%')
+  	</select>
+  	
+  	<update id="update_emailauth">
+		update joinmember
+		set memailauth = 1
+		where memail = #{memail}
+	</update>
+  </mapper>

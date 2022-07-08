@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+<configuration>
+	<!-- <settings>
+		널허용 : 매퍼에서 값을 가져올때 null가능  
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings> -->
+	<!-- 매퍼 resultType의 알리아스 --> 
+	<typeAliases>
+		<typeAlias type="com.mycompany.myapp.dto.JoinMember" alias="JoinMember"/>
+		<typeAlias type="com.mycompany.myapp.dto.JoinPension" alias="JoinPension"/>
+		<typeAlias type="com.mycompany.myapp.dto.PensionFile" alias="PensionFile"/>
+		<typeAlias type="com.mycompany.myapp.dto.PensionList" alias="PensionList"/>
+		<typeAlias type="com.mycompany.myapp.dto.ReplyList" alias="ReplyList"/>
+		<typeAlias type="com.mycompany.myapp.dto.Reserve" alias="Reserve"/>
+	</typeAliases>
+
+</configuration>  

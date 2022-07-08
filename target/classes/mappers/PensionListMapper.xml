@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.mycompany.myapp.PensionListMapper">
+  	<insert id="insert" parameterType="PensionList" useGeneratedKeys="true" keyProperty="pnum">
+  		insert into PensionList(pemail, subject, zipcode, addrload, addrdetail, pphone, pprice, region, pcontent, poption) 
+  		values (#{pemail}, #{subject}, #{zipcode}, #{addrload}, #{addrdetail}, #{pphone}, #{pprice}, #{region}, #{pcontent}, #{poption})
+  	</insert>
+  	<update id = "update">
+  		update PensionList
+		set
+		subject = #{subject},
+		zipcode = #{zipcode},
+		addrload = #{addrload},
+		addrdetail = #{addrdetail},
+		pphone = #{pphone},
+		pprice = #{pprice},
+		region = #{region},
+		pcontent = #{pcontent},
+		poption = #{poption}
+		where pnum = #{pnum}
+  	</update>
+  	<!-- 삭제시 삭제 여부를 y로 변경 -->
+  	<update id="updateRemoveyn">
+  		UPDATE PensionList
+		SET removeyn = 'y'
+		WHERE pnum = #{pnum}
+  	</update>
+  	<delete id="delete">
+  		delete from PensionList
+		where pnum = #{pnum}
+  	</delete>
+  	<select id="selectOne" resultType="PensionList">
+  		select * from pensionList
+		where pnum = #{pnum}
+  	</select>
+  	<select id="selectList" resultType="PensionList">
+  		select * from pensionList
+  		where removeyn = 'n'
+  			<include refid="find"/>
+		order by pnum desc
+		limit #{startNum} , #{perPage}
+  	</select>
+  	
+  	<!-- 전체게시물수 구하기 -->
+  	<select id="selectTotalCnt" resultType="int">
+  		SELECT COUNT(*) totalCnt FROM PensionList
+		WHERE removeyn = 'n'
+		<include refid="find"/>
+  	</select>
+  	
+  	<!-- 지역/펜션 이름/내용/제목+내용/펜션주 이메일로 검색 -->
+  	<sql id="find">
+  		<if test="findkey =='region'">
+			AND region LIKE  concat('%' , #{findvalue} , '%')
+		</if>
+		<if test="findkey =='subject'">
+			AND subject LIKE concat('%' , #{findvalue} , '%')
+		</if>
+  		<if test="findkey =='pemail'">
+			AND pemail LIKE  concat('%' , #{findvalue} , '%')
+		</if>
+   	</sql>
+  	<update id="updateLikes">
+  		UPDATE PensionList
+		SET likes = likes +1
+		WHERE pnum = #{pnum}
+  	</update>
+  	<update id="updateDisLikes">
+  		UPDATE PensionList
+		SET dislikes = dislikes +1
+		WHERE pnum = #{pnum}
+  	</update>
+  </mapper>
