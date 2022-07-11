@@ -82,6 +82,37 @@ public class JoinMemberController {
 		
 		return "joinmember/info";
 	}
+	
+	//삭제
+	@GetMapping("remove")
+	public String remove(@RequestParam String memail,HttpSession session ,RedirectAttributes rattr) {
+		ErrorCode errorCode = joinmemberservice.delete(memail);
+		
+		rattr.addFlashAttribute("msg", errorCode.getMsg());
+		session.invalidate();
+		return "redirect:/";
+	}
+	
+	//회원 정보 수정
+	@GetMapping("modify")
+	public void modify(HttpSession session, Model model) {
+		String memail = (String)session.getAttribute("memail");
+		
+		model.addAttribute("joinmember", joinmemberservice.selectOne(memail));
+	}
+	
+	@PostMapping("modify")
+	public String modify(JoinMember joinmember, String npasswd, RedirectAttributes rattr) throws Exception{
+		ErrorCode errorCode = joinmemberservice.update(joinmember, npasswd);
+		if (errorCode.getCode() !=0) {
+			rattr.addFlashAttribute("msg", errorCode.getMsg());
+			return "redirect:modify";
+		}else {
+			rattr.addFlashAttribute("msg", errorCode.getMsg());
+			return "redirect:info";
+		}
+		
+	}
 
 	
 }

@@ -22,9 +22,9 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 	<!-- 파일저장경로 (윈도우)-->
-	<resources mapping="/savedir/**" location="file:///D:/PJS/savedir/" />
+	<!-- <resources mapping="/savedir/**" location="file:///D:/PJS/savedir/" /> -->
 	<!-- 파일저장경로 (우분투)-->
-	<!-- <resources mapping="/savedir/**" location="file:///var/lib/tomcat9/webapps/savedir/" /> -->
+	<resources mapping="/savedir/**" location="file:///var/lib/tomcat9/webapps/savedir/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

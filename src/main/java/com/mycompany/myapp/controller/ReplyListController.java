@@ -31,9 +31,9 @@ public class ReplyListController {
 	private ReplyListService replyListService;
 	
 	@GetMapping("/")
-	public String replyListhome(@RequestParam int pnum,  Page page, Model model,
+	public String replyListhome(@RequestParam(required = false) int pnum,  Page page, Model model,
 			RedirectAttributes rattr) {
-		System.out.println("/");
+		
 		model.addAttribute("page", page);
 		rattr.addAttribute("pnum", pnum);
 		return "redirect:replyList";

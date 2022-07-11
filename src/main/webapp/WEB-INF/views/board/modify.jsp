@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>펜션 정보 수정</title>
 <script type="text/javascript" src="${path}/resources/js/fileAdd.js"></script>
 </head>
 <body>

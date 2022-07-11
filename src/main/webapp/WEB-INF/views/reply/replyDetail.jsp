@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>방명록 상세 보기</title>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
 <script type="text/javascript" src="${path}/resources/js/replyListDetail.js"></script>
 <script type="text/x-handlebars-template" id="template_source"></script>

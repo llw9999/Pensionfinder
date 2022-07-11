@@ -67,8 +67,7 @@ public class PensionListController {
 		
 		String pemail = (String)session.getAttribute("pemail");
 		
-		JoinPension joinpension = joinPensionService.selectOne(pemail);
-		model.addAttribute("joinpension", joinpension);
+		model.addAttribute("joinpension", joinPensionService.selectOne(pemail));
 	}
 	
 	@PostMapping("add")

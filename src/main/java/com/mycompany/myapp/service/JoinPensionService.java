@@ -9,6 +9,10 @@ public interface JoinPensionService {
 
 	ErrorCode insert(JoinPension joinpension, HttpSession session, String path) throws Exception;
 	
+	ErrorCode update(JoinPension joinpension, String npasswd) throws Exception;
+	
+	ErrorCode delete(String pemail);
+	
 	void update_emailauth(String pemail);
 	
 	JoinPension selectOne(String pemail);

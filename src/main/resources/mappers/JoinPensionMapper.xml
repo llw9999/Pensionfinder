@@ -17,7 +17,7 @@
 			zipcode = #{zipcode},
 			addrload = #{addrload},
 			addrdetail = #{addrdetail}
-		where email = #{pemail}
+		where pemail = #{pemail}
   	</update>
   	
   	<delete id="delete">

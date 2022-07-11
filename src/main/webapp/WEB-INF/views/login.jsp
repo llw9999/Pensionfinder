@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>로그인</title>
 <script type="text/javascript" src="${path}/resources/js/login.js"></script>
 </head>
 <body>

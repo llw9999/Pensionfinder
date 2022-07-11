@@ -4,12 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.mycompany.myapp.PensionListMapper">
-  	<insert id="insert" parameterType="PensionList" useGeneratedKeys="true" keyProperty="pnum">
-  		insert into PensionList(pemail, subject, zipcode, addrload, addrdetail, pphone, pprice, region, pcontent, poption) 
+  	<insert id="insert" parameterType="pensionlist" useGeneratedKeys="true" keyProperty="pnum">
+  		insert into pensionlist(pemail, subject, zipcode, addrload, addrdetail, pphone, pprice, region, pcontent, poption) 
   		values (#{pemail}, #{subject}, #{zipcode}, #{addrload}, #{addrdetail}, #{pphone}, #{pprice}, #{region}, #{pcontent}, #{poption})
   	</insert>
   	<update id = "update">
-  		update PensionList
+  		update pensionlist
 		set
 		subject = #{subject},
 		zipcode = #{zipcode},
@@ -24,20 +24,20 @@
   	</update>
   	<!-- 삭제시 삭제 여부를 y로 변경 -->
   	<update id="updateRemoveyn">
-  		UPDATE PensionList
+  		UPDATE pensionlist
 		SET removeyn = 'y'
 		WHERE pnum = #{pnum}
   	</update>
   	<delete id="delete">
-  		delete from PensionList
+  		delete from pensionlist
 		where pnum = #{pnum}
   	</delete>
   	<select id="selectOne" resultType="PensionList">
-  		select * from pensionList
+  		select * from pensionlist
 		where pnum = #{pnum}
   	</select>
   	<select id="selectList" resultType="PensionList">
-  		select * from pensionList
+  		select * from pensionlist
   		where removeyn = 'n'
   			<include refid="find"/>
 		order by pnum desc
@@ -46,7 +46,7 @@
   	
   	<!-- 전체게시물수 구하기 -->
   	<select id="selectTotalCnt" resultType="int">
-  		SELECT COUNT(*) totalCnt FROM PensionList
+  		SELECT COUNT(*) totalCnt FROM pensionlist
 		WHERE removeyn = 'n'
 		<include refid="find"/>
   	</select>
@@ -64,12 +64,12 @@
 		</if>
    	</sql>
   	<update id="updateLikes">
-  		UPDATE PensionList
+  		UPDATE pensionlist
 		SET likes = likes +1
 		WHERE pnum = #{pnum}
   	</update>
   	<update id="updateDisLikes">
-  		UPDATE PensionList
+  		UPDATE pensionlist
 		SET dislikes = dislikes +1
 		WHERE pnum = #{pnum}
   	</update>

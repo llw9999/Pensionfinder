@@ -5,11 +5,11 @@
   
   <mapper namespace="com.mycompany.myapp.ReplyListMapper">
   	<insert id="insert" parameterType="ReplyList" useGeneratedKeys="true" keyProperty="rnum">
-  		insert into ReplyList(memail, pnum, rsubject, rcontent) 
+  		insert into replylist(memail, pnum, rsubject, rcontent) 
   		values (#{memail}, #{pnum}, #{rsubject}, #{rcontent})
   	</insert>
   	<update id="update">
-  		update ReplyList
+  		update replylist
 		set
 		rsubject = #{rsubject},
 		rcontent = #{rcontent},
@@ -17,20 +17,20 @@
 		where rnum = #{rnum}
   	</update>
   	<delete id="delete">
-  		delete from ReplyList
+  		delete from replylist
 		where rnum = #{rnum}
   	</delete>
   	<!-- 한 게시물의 모든 댓글 삭제 -->
   	<delete id="deleteAll">
-  		delete from ReplyList
+  		delete from replylist
 		where pnum = #{pnum}
   	</delete>
   	<select id="selectOne" resultType="ReplyList">
-  		select * from ReplyList
+  		select * from replylist
 		Where rnum = #{rnum}
   	</select>
   	<select id="selectList" resultType="ReplyList">
-  		select * from ReplyList
+  		select * from replylist
 		where pnum = #{pnum}
 		and rremoveyn = 'n'
 			<include refid="find"/>
@@ -39,31 +39,31 @@
   	</select>
   	<!-- 댓글 순서 재수정 -->
   	<update id="updateRestep">
-  		update ReplyList
+  		update replylist
 		set
 		restep = restep+1
 		where pnum = #{pnum}
 		and restep >= #{restep}
   	</update>
   	<update id="updateHelp">
-  		UPDATE ReplyList
+  		UPDATE replylist
 		SET help = help +1
 		WHERE rnum = #{rnum}
   	</update>
   	<update id="updateUseless">
-  		UPDATE ReplyList
+  		UPDATE replylist
 		SET useless = useless +1
 		WHERE rnum = #{rnum}
   	</update>
   	<!-- 삭제시 삭제 여부를 y로 변경 -->
   	<update id="updateRremoveyn">
-  		UPDATE ReplyList
+  		UPDATE replylist
 		SET rremoveyn = 'y'
 		WHERE rnum = #{rnum}
   	</update>
   	<!-- 전체댓글수 구하기 -->
   	<select id="selectTotalCnt" resultType="int">
-  		SELECT COUNT(*) totalCnt FROM ReplyList
+  		SELECT COUNT(*) totalCnt FROM replylist
 		WHERE pnum = #{pnum}
 		<include refid="find"/>
   	</select>
@@ -74,13 +74,6 @@
 		<if test="findkey =='rsubject'">
 			AND rsubject LIKE rsubject('%' , #{findvalue} , '%')
 		</if>
-		<if test="findkey =='rcontent'">
-			AND rcontent LIKE concat('%' , #{findvalue} , '%')
-		</if>	
-  		<if test="findkey=='rsubcon'">
-			AND (rsubject LIKE concat('%' , #{findvalue} , '%')
-		   		OR rcontent LIKE concat('%' , #{findvalue} , '%'))
-  		</if>
   		<if test="findkey =='remail'">
 			AND remail LIKE  concat('%' , #{findvalue} , '%')
 		</if>
