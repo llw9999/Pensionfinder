@@ -18,7 +18,7 @@ public class ReplyListServiceImpl implements ReplyListService{
 	private ReplyListRepository replyListRepository;	
 	
 	@Override
-	public List<ReplyList> selectList(int pnum, Page page) {
+	public List<ReplyList> selectList(Page page) {
 		//페이징 처리
 		int curPage = page.getCurPage(); //현재페이지
 		int perPage = page.getPerPage(); //한페이지당 게시물수
@@ -31,7 +31,7 @@ public class ReplyListServiceImpl implements ReplyListService{
 		int endNum = startNum + perPage -1;
 		
 		//3)전체페이지수
-		int totalCnt = replyListRepository.selectTotalCnt(pnum, page); //전체게시물수
+		int totalCnt = replyListRepository.selectTotalCnt(page); //전체게시물수
 		int totPage = totalCnt/perPage;
 		if (totalCnt%perPage!=0) totPage++; //나머지가 있으면 +1
 		
@@ -48,7 +48,7 @@ public class ReplyListServiceImpl implements ReplyListService{
 		page.setStartPage(startPage);
 		page.setEndPage(endPage);
 		page.setTotPage(totPage);
-		return replyListRepository.selectList(pnum, page);
+		return replyListRepository.selectList(page);
 	}
 
 	@Override
@@ -60,7 +60,6 @@ public class ReplyListServiceImpl implements ReplyListService{
 	@Override
 	public ErrorCode insert(ReplyList rList) throws Exception {
 		replyListRepository.insert(rList);
-		System.out.println(rList);
 		return ErrorCode.SUCCESS_ADD;
 	}
 	

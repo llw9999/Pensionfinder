@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원정보</title>
+<script type="text/javascript" src="${path}/resources/js/memberinfo.js"></script>
 </head>
 <body>
 <div class="container">
@@ -34,6 +35,16 @@
 			<tr>
 				<th>상세주소</th>
 				<td>${joinpension.addrdetail}</td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<td>
+					<button onclick="location.href='${path}/joinpension/modify'" class="btn">정보 수정</button>
+				</td>
+				<td>
+					<button onclick="premoveCheck('${path}', '${joinpension.pemail}')" class="btn btn-warning">회원탈퇴</button>
+				</td>
 			</tr>
 		</table>
 	</div>

@@ -93,5 +93,35 @@ public class JoinPensionController {
 		
 		return "joinpension/info";
 	}
+	@GetMapping("remove")
+	public String remove(@RequestParam String pemail,HttpSession session ,RedirectAttributes rattr) {
+		ErrorCode errorCode = joinpensionservice.delete(pemail);
+		
+		rattr.addFlashAttribute("msg", errorCode.getMsg());
+		session.invalidate();
+		return "redirect:/";
+	}
+	
+		//회원 정보 수정
+		@GetMapping("modify")
+		public void modify(HttpSession session, Model model) {
+			String pemail = (String)session.getAttribute("pemail");
+			
+			model.addAttribute("joinpension", joinpensionservice.selectOne(pemail));
+		}
+		
+		@PostMapping("modify")
+		public String modify(JoinPension joinpension, String npasswd, RedirectAttributes rattr) throws Exception{
+			ErrorCode errorCode = joinpensionservice.update(joinpension, npasswd);
+			if (errorCode.getCode() !=0) {
+				rattr.addFlashAttribute("msg", errorCode.getMsg());
+				
+				return "redirect:modify";
+			}else {
+				rattr.addFlashAttribute("msg", errorCode.getMsg());
+				return "redirect:info";
+			}
+			
+		}
 	
 }

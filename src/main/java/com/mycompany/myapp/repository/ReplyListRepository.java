@@ -17,6 +17,6 @@ public interface ReplyListRepository {
 	
 	int updateRremoveyn(int rnum);
 	
-	int selectTotalCnt(int pnum, Page page);
-	List<ReplyList> selectList(int rnum, Page page);
+	int selectTotalCnt(Page page);
+	List<ReplyList> selectList(Page page);
 }

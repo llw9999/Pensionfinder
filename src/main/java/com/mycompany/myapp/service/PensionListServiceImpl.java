@@ -72,7 +72,6 @@ public class PensionListServiceImpl implements PensionListService {
 		//1)게시물 추가
 		//insert시 pnum세팅
 		pensionListRepository.insert(pList);
-		System.out.println(pList);
 		
 		//2)게시물 파일들 업로드 후 저장
 		pensionFilesSave(pList);

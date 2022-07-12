@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>펜션 등록</title>
 <script type="text/javascript" src="${path}/resources/js/fileAdd.js"></script>
 </head>
 <body>
@@ -18,7 +18,7 @@
 			<table class="table table-condensed">
 				<tr>
 					<th>이메일</th>
-					<td> <input type="text" name="pemail" value="${sessionScope.pemail}" readonly> </td>
+					<td> <input type="email" name="pemail" value="${sessionScope.pemail}" readonly> </td>
 				</tr>
 				<tr>
 					<th>펜션 이름</th>

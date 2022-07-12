@@ -13,10 +13,11 @@ public enum ErrorCode {
 	ERROR_JOIN_ID_EXIST(1,"이미 등록된 아이디" ),
 	SUCCESS_JOIN(0,"이메일 인증 진행해 주세요" ),
 	SUCCESS_EMAILAUTH(0,"이메일 인증이 완료 되었습니다." ),
-	ERROR_EMAILAUTH(1,"인증코드가 일치 하지 않습지다." ),
+	ERROR_EMAILAUTH(1,"인증코드가 일치 하지 않습니다." ),
 	SUCCESS_RESERVE(0, "예약이 완료되었습니다."),
 	SUCCESS_REMOVE_RESERVE(0, "예약이 취소되었습니다."),
-	ERROR_RESERVE(1,"이미 예약된 날짜입니다.");
+	ERROR_RESERVE(1,"이미 예약된 날짜입니다."),
+	SUCCESS_REMOVE_MEMBER(0, "탈퇴가 완료되었습니다.");
 
 	
 	private int code;

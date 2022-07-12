@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>헤더</title>
 <script type="text/javascript" src="${path}/resources/js/header.js"></script>
 </head>
 <body>

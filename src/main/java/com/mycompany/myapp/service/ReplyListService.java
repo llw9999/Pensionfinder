@@ -18,6 +18,6 @@ public interface ReplyListService {
 	int updateHelp(int rnum);
 	//도움이 안되는 댓글
 	int updateUseless(int rnum);
-	List<ReplyList> selectList(int pnum, Page page);
+	List<ReplyList> selectList(Page page);
 
 }

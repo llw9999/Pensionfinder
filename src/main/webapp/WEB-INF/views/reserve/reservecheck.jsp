@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>예약 확인</title>
 <script type="text/javascript" src="${path}/resources/js/reservecheck.js"></script>
 </head>
 <body>

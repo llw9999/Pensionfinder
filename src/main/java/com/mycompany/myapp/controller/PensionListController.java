@@ -54,11 +54,11 @@ public class PensionListController {
 	}
 	
 	@GetMapping("detail")
-	public void detail(@RequestParam int pnum, Model model) {
+	public void detail(@ModelAttribute("page") Page page, Model model) {
 		//게시물 조회
-		model.addAttribute("pList", pensionListService.selectOne(pnum));
+		model.addAttribute("pList", pensionListService.selectOne(page.getPnum()));
 		//게시물 파일들 조회
-		model.addAttribute("pflist", pensionFileService.selectList(pnum));
+		model.addAttribute("pflist", pensionFileService.selectList(page.getPnum()));
 	}
 	
 	@GetMapping("add")
@@ -67,8 +67,7 @@ public class PensionListController {
 		
 		String pemail = (String)session.getAttribute("pemail");
 		
-		JoinPension joinpension = joinPensionService.selectOne(pemail);
-		model.addAttribute("joinpension", joinpension);
+		model.addAttribute("joinpension", joinPensionService.selectOne(pemail));
 	}
 	
 	@PostMapping("add")

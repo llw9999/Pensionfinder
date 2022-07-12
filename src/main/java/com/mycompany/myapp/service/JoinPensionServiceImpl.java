@@ -1,5 +1,6 @@
 package com.mycompany.myapp.service;
 
+import java.security.CryptoPrimitive;
 import java.util.Random;
 
 import javax.mail.Message;
@@ -13,6 +14,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.google.protobuf.DescriptorProtos.FieldOptions.CType;
 import com.mycompany.myapp.advice.ErrorCode;
 import com.mycompany.myapp.dto.JoinPension;
 import com.mycompany.myapp.repository.JoinPensionRepository;
@@ -70,8 +72,8 @@ public class JoinPensionServiceImpl implements JoinPensionService {
 		String authCode = getAuthCode();
 		StringBuffer content = new StringBuffer();
 		content.append(pemail + "님 반갑습니다. 아래 링크를 클릭해 주세요<br>");
-		content.append("<a href='http://localhost:8081"+path+"/joinpension/emailConfirm?authCode="+authCode+"&pemail="+pemail+"'>이메일인증확인</a>");
-		
+		//content.append("<a href='http://localhost:8081"+path+"/joinpension/emailConfirm?authCode="+authCode+"&pemail="+pemail+"'>이메일인증확인</a>");
+		content.append("<a href='http://49.50.160.73:8080"+path+"/joinpension/emailConfirm?authCode="+authCode+"&pemail="+pemail+"'>이메일인증확인</a>");
 		MimeMessage message = mailSender.createMimeMessage();
 		
 		message.setSubject("회원가입 이메일 인증", "utf-8");
@@ -93,6 +95,32 @@ public class JoinPensionServiceImpl implements JoinPensionService {
 	@Override
 	public JoinPension selectOne(String pemail) {
 		return joinpensionRepository.selectOne(pemail);
+	}
+
+	@Override
+	public ErrorCode delete(String pemail) {
+		joinpensionRepository.delete(pemail);
+		return ErrorCode.SUCCESS_REMOVE_MEMBER;
+	}
+
+	@Override
+	public ErrorCode update(JoinPension joinpension, String npasswd) throws Exception {
+		JoinPension dbpension = joinpensionRepository.selectOne(joinpension.getPemail());
+		
+		boolean match = bCryptPasswordEncoder.matches(joinpension.getPpasswd(), dbpension.getPpasswd());
+		if(!match) {
+			return ErrorCode.ERROR_LOGIN_PASSWD;
+		}
+		String cryptPasswd;
+		if(!npasswd.equals("")) {
+			cryptPasswd = bCryptPasswordEncoder.encode(npasswd);
+		}else {
+			cryptPasswd = bCryptPasswordEncoder.encode(joinpension.getPpasswd());
+		}
+		joinpension.setPpasswd(cryptPasswd);
+		
+		joinpensionRepository.update(joinpension);
+		return ErrorCode.SUCCESS_MODIFY;
 	}
 
 }

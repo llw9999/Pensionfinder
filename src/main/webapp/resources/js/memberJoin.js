@@ -77,3 +77,40 @@ function pjoinCheck(e){
 	document.getElementById('frmJoinp').submit();
 
 }
+
+function modifyCheck(e){
+	e.preventDefault();
+	const mpasswd = document.getElementById('mpasswd');
+	const npasswd = document.getElementById('npasswd');
+	const npasswdConfirm = document.getElementById('npasswdConfirm');
+	
+	if (!mpasswd.value){
+		alert('기존 비밀번호를 입력해주세요!');
+		mpasswd.focus();
+		return;
+	}if (!npasswd.value != npasswdConfirm.value){
+		alert('신규 비밀번호가 일치하지 않습니다!');
+		npasswd.focus();
+		return;
+	}
+	document.getElementById('frmModify').submit();
+}
+	
+function pmodifyCheck(e){
+	e.preventDefault();
+	const ppasswd = document.getElementById('ppasswd');
+	const npasswd = document.getElementById('npasswd');
+	const npasswdConfirm = document.getElementById('npasswdConfirm');
+	
+	if (!ppasswd.value){
+		alert('기존 비밀번호를 입력해주세요!');
+		mpasswd.focus();
+		return;
+	}if (!npasswd.value != npasswdConfirm.value){
+		alert('신규 비밀번호가 일치하지 않습니다!');
+		npasswd.focus();
+		return;
+	}
+	document.getElementById('frmModify').submit();
+	
+}

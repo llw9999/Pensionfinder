@@ -5,24 +5,24 @@
   
   <mapper namespace="com.mycompany.myapp.PensionFileMapper">
   	<insert id="insert">
-  		INSERT INTO PensionFile(pnum, filename)
+  		INSERT INTO pensionfile(pnum, filename)
 		VALUES(#{pnum}, #{filename})
   	</insert>
   	<update id="update">
-  		UPDATE PensionFile
+  		UPDATE pensionfile
 		SET filename = #{filename}
 		WHERE pfnum = #{pfnum}
   	</update>
   	<delete id="delete">
-  		DELETE FROM PensionFile
+  		DELETE FROM pensionfile
 		WHERE pfnum = #{pfnum}
 	</delete>
   	<select id="selectOne" resultType="PensionFile">
-  		SELECT * FROM PensionFile
+  		SELECT * FROM pensionfile
 		WHERE pfnum = #{pfnum}
   	</select>
   	<select id="selectList" resultType="PensionFile">
-  		SELECT * FROM PensionFile
+  		SELECT * FROM pensionfile
 		WHERE pnum = #{pnum}
   	</select>
   </mapper>

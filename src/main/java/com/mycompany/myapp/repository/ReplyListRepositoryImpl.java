@@ -37,7 +37,7 @@ public class ReplyListRepositoryImpl implements ReplyListRepository{
 	}
 
 	@Override
-	public List<ReplyList> selectList(int pnum, Page page) {
+	public List<ReplyList> selectList(Page page) {
 		return sqlSession.selectList("com.mycompany.myapp.ReplyListMapper.selectList", page);
 	}
 
@@ -57,7 +57,7 @@ public class ReplyListRepositoryImpl implements ReplyListRepository{
 	}
 
 	@Override
-	public int selectTotalCnt(int pnum, Page page) {
+	public int selectTotalCnt(Page page) {
 		return sqlSession.selectOne("com.mycompany.myapp.ReplyListMapper.selectTotalCnt", page);
 	}
 }

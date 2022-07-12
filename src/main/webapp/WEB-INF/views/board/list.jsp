@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>펜션 목록</title>
 <script type="text/javascript" src="${path}/resources/js/pensionadd.js"></script>
 </head>
 <body>
@@ -46,19 +46,20 @@
 			</c:forEach>
 		</table>
 		<hr>
-		<c:if test="${page.startPage != 1}">
-			<a href="${path}/board/list?curPage=${page.startPage-1}">이전</a>
-		</c:if>
+		<div>
+			<c:if test="${page.startPage != 1}">
+				<a href="${path}/board/list?curPage=${page.startPage-1}">이전</a>
+			</c:if>
+			
+			<c:forEach var="i" begin="${page.startPage}" end="${page.endPage}">
+				<a href="${path}/board/list?curPage=${i}">${i}</a> 
+			</c:forEach>
 		
-		<c:forEach var="i" begin="${page.startPage}" end="${page.endPage}">
-			<a href="${path}/board/list?curPage=${i}">${i}</a> 
-		</c:forEach>
-	
-		<c:if test="${page.endPage<page.totPage}">
-			<a href="${path}/board/list?curPage=${page.endPage+1}">다음</a>
-		</c:if>
+			<c:if test="${page.endPage<page.totPage}">
+				<a href="${path}/board/list?curPage=${page.endPage+1}">다음</a>
+			</c:if>
+		</div>
 		<hr>
-		
 	</div>
 </div>
 <%@include file="../footer.jsp" %>

@@ -25,23 +25,23 @@ import com.mycompany.myapp.service.ReplyListService;
 
 @Controller
 @RequestMapping("reply")
-//@SessionAttributes("page")
+@SessionAttributes("page")
 public class ReplyListController {
 	@Autowired
 	private ReplyListService replyListService;
 	
 	@GetMapping("/")
-	public String replyListhome(@RequestParam int pnum,  Page page, Model model,
+	public String replyListhome(@RequestParam(required = false) int pnum,  Page page, Model model,
 			RedirectAttributes rattr) {
-		System.out.println("/");
+		
 		model.addAttribute("page", page);
 		rattr.addAttribute("pnum", pnum);
 		return "redirect:replyList";
 	}
 	
 	@GetMapping("replyList")
-	public void replyList(@RequestParam int pnum,  @ModelAttribute("page") Page page, Model model) {
-		model.addAttribute("rlist", replyListService.selectList(pnum, page));
+	public void replyList(@ModelAttribute("page") Page page, Model model) {
+		model.addAttribute("rlist", replyListService.selectList(page));
 	}
 	
 	@GetMapping("replyDetail")
