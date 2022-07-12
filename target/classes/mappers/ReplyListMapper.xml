@@ -64,7 +64,11 @@
   	<!-- 전체댓글수 구하기 -->
   	<select id="selectTotalCnt" resultType="int">
   		SELECT COUNT(*) totalCnt FROM replylist
+<<<<<<< HEAD
   		WHERE pnum = #{pnum}
+=======
+		WHERE pnum = #{pnum}
+>>>>>>> 289a9176928b588a283a316b38d120879e0b0615
 		<include refid="find"/>
   	</select>
   	
@@ -72,8 +76,13 @@
 		<if test="findkey =='rsubject'">
 			AND rsubject LIKE concat('%' , #{findvalue} , '%')
 		</if>
+<<<<<<< HEAD
   		<if test="findkey =='memail'">
 			AND memail LIKE  concat('%' , #{findvalue} , '%')
+=======
+  		<if test="findkey =='remail'">
+			AND remail LIKE  concat('%' , #{findvalue} , '%')
+>>>>>>> 289a9176928b588a283a316b38d120879e0b0615
 		</if>
    	</sql>
   </mapper>

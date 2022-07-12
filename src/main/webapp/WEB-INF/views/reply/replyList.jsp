@@ -16,8 +16,13 @@
 	<h2> 방명록 </h2>
 		<form action="${path}/reply/replyList">
 			<select name="findkey">
+<<<<<<< HEAD
 				<option value="memail" <c:out value="${page.findkey=='memail'?'selected':''}" />>이메일</option>
 				<option value="rsubject" <c:out value="${page.findkey=='rsubject'?'selected':''}" />>제목</option>
+=======
+				<option value="memail" <c:out value="${page.findkey='memail'?'selected':''}" />>이메일</option>
+				<option value="rsubject" <c:out value="${page.findkey='rsubject'?'selected':''}" />>제목</option>
+>>>>>>> 289a9176928b588a283a316b38d120879e0b0615
 			</select>
 			<input type="text" name="findvalue" value="${page.findvalue}">
 			<button class="btn">조회</button>
@@ -47,6 +52,7 @@
 		<hr>
 		<div>
 			<c:if test="${page.startPage != 1}">
+<<<<<<< HEAD
 				<a href="${path}/reply/replyList?pnum=${page.pnum}&curPage=${page.startPage-1}">이전</a>
 			</c:if>
 			
@@ -56,6 +62,17 @@
 		
 			<c:if test="${page.endPage<page.totPage}">
 				<a href="${path}/reply/replyList?pnum=${page.pnum}&curPage=${page.endPage+1}">다음</a>
+=======
+				<a href="${path}/reply/replyList?pnum=${param.pnum}&curPage=${page.startPage-1}">이전</a>
+			</c:if>
+			
+			<c:forEach var="i" begin="${page.startPage}" end="${page.endPage}">
+				<a href="${path}/reply/replyList?pnum=${param.pnum}&curPage=${i}">${i}</a> 
+			</c:forEach>
+		
+			<c:if test="${page.endPage<page.totPage}">
+				<a href="${path}/reply/replyList?pnum=${param.pnum}&curPage=${page.endPage+1}">다음</a>
+>>>>>>> 289a9176928b588a283a316b38d120879e0b0615
 			</c:if>
 		</div>
 		<hr>
